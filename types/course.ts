@@ -10,7 +10,7 @@ export type Lesson = {
 
 export type LessonWithPath = Lesson & {
   path: string;
-}
+};
 
 export type Chapter = {
   title: string;
@@ -24,3 +24,21 @@ export type Course = {
   chapters: Chapter[];
 };
 
+export type CourseMeta = {
+  title: string;
+  chapters: OutlineChapter[];
+};
+
+type OutlineBase = {
+  title: string;
+  slug: string;
+  number: number;
+};
+
+export type OutlineChapter = OutlineBase & {
+  lessons: OutlineLesson[];
+};
+
+export type OutlineLesson = OutlineBase & {
+  path: string;
+};

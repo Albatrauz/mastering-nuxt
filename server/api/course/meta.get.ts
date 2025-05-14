@@ -1,31 +1,13 @@
 import {
   Course,
   Chapter,
-  Lesson,
-  LessonWithPath,
-} from '~/types/course'
-import course from "~/server/courseData";
+  CourseMeta,
+  OutlineChapter,
+  OutlineLesson,
+} from '~/types/course';
+import course from '~/server/courseData';
 
-course as Course
-
-type CourseMeta = {
-  title: string;
-  chapters: OutlineChapter[];
-}
-
-type OutlineBase = {
-  title: string;
-  slug: string;
-  number: number;
-}
-
-type OutlineChapter = OutlineBase & {
-  lessons: OutlineLesson[];
-}
-
-type OutlineLesson = OutlineBase & {
-  path: string;
-}
+course as Course;
 
 export default defineEventHandler((event): CourseMeta => {
   const outline: OutlineChapter[] = course.chapters.reduce(
@@ -53,6 +35,6 @@ export default defineEventHandler((event): CourseMeta => {
 
   return {
     title: course.title,
-    chapters: outline
-  }
+    chapters: outline,
+  };
 });
